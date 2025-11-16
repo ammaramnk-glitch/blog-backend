@@ -1,11 +1,8 @@
-
 export default ({ env }) => ({
   url: env('PUBLIC_URL'),
-  host: env('0.0.0.0'),
+  host: '0.0.0.0',             // Fixed host
   port: env.int('PORT', 10000), // Render requires 10000
   app: {
-    keys: env.array('APP_KEYS'),
+    keys: env('APP_KEYS', '').split(',').map(k => k.trim()), // Fixed APP_KEYS
   },
 });
-
-
