@@ -1,9 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = ({ env }) => ({
-    host: env('HOST', '0.0.0.0'),
-    port: env.int('PORT', 1337),
-    app: {
-        keys: env.array('APP_KEYS'),
+module.exports = ({ env }) => ({
+    connection: {
+        client: 'postgres',
+        connection: {
+            host: env('DB_HOST', 'localhost'),
+            database: env('DB_NAME', 'mydb'),
+            user: env('DB_USER', 'postgres'),
+            password: env('DB_PASSWORD', 'password'),
+        },
+        pool: { min: 0, max: 10 },
+        debug: false,
     },
 });
